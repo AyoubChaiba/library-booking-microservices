@@ -26,4 +26,8 @@ const login = async (req, res) => {
     }
 };
 
-module.exports = { register, login };
+const verify = (req, res) => {
+    res.json({ user: req.user });
+};
+
+module.exports = { register, login, verify };
