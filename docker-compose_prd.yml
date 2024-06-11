@@ -1,0 +1,25 @@
+
+services:
+  customer-service:
+    build:
+      context: ./customer-service/.
+      target: development
+    environment:
+      - NODE_ENV=development
+    command: npm run dev
+
+  book-service:
+    build:
+      context: ./book-service/.
+      target: development
+    environment:
+      - NODE_ENV=development
+    command: npm run dev
+
+  order-service:
+    build:
+      context: ./order-service/.
+      target: development
+    environment:
+      - NODE_ENV=development
+    command: npm run dev

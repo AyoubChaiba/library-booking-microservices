@@ -1,0 +1,31 @@
+
+services:
+  customer-service:
+    build:
+      context: ./services/customer-service/.
+      target: development
+    volumes:
+      - ./services/customer-service/src:/services/customer-service/app/src:ro
+    env_file:
+      - ./customer-service/.env
+    command: npm run dev
+
+  book-service:
+    build:
+      context: ./services/book-service/.
+      target: development
+    volumes:
+      - ./services/book-service/src:/services/book-service/app/src:ro
+    env_file:
+      - ./services/book-service/.env
+    command: npm run dev
+
+  order-service:
+    build:
+      context: ./services/order-service/.
+      target: development
+    volumes:
+      - ./services/order-service/src:/services/order-service/app/src:ro
+    env_file:
+      - ./services/order-service/.env
+    command: npm run dev
