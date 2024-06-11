@@ -1,6 +1,6 @@
 FROM node:latest as base
 WORKDIR /app
-COPY package.json .
+COPY package*.json .
 EXPOSE 3003
 
 FROM base as development

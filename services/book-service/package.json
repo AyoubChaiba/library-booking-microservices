@@ -6,7 +6,7 @@
   "type": "commonjs",
   "scripts": {
     "start": "node src/app.js",
-    "dev": "nodemon src/app.js"
+    "dev": "nodemon --legacy-watch src/app.js"
   },
   "author": "",
   "license": "ISC",

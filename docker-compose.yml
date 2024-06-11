@@ -5,13 +5,20 @@ services:
       - "3001:3001"
     env_file:
       - ./services/customer-service/.env
-
+    networks:
+      - app-network
+    depends_on:
+      - mongo
   book-service:
     container_name: book-container
     ports:
       - "3003:3003"
     env_file:
       - ./services/book-service/.env
+    networks:
+      - app-network
+    depends_on:
+      - mongo
 
   order-service:
     container_name: order-container
@@ -19,6 +26,10 @@ services:
       - "3002:3002"
     env_file:
       - ./services/order-service/.env
+    networks:
+      - app-network
+    depends_on:
+      - mongo
 
   mongo:
     image: mongo
@@ -28,6 +39,8 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
+    networks:
+      - app-network
 
   mongo-express:
     image: mongo-express
@@ -39,6 +52,12 @@ services:
       ME_CONFIG_MONGODB_ADMINPASSWORD: example
       ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
       ME_CONFIG_BASICAUTH: false
+    depends_on:
+      - mongo
+
+networks:
+  app-network:
+    driver: bridge
 
 volumes:
   mongo_data:

@@ -1,25 +1,25 @@
-
 services:
   customer-service:
     build:
       context: ./customer-service/.
-      target: development
+      target: production
     environment:
-      - NODE_ENV=development
+      - NODE_ENV=production
     command: npm run dev
+    depends_on:
 
   book-service:
     build:
       context: ./book-service/.
-      target: development
+      target: production
     environment:
-      - NODE_ENV=development
+      - NODE_ENV=production
     command: npm run dev
 
   order-service:
     build:
       context: ./order-service/.
-      target: development
+      target: production
     environment:
-      - NODE_ENV=development
+      - NODE_ENV=production
     command: npm run dev
