@@ -10,4 +10,9 @@ const getBooks = async () => {
     return await Book.find();
 };
 
-module.exports = { addBook, getBooks };
+const getBook = async (id) => {
+    return await Book.findById(id);
+};
+
+module.exports = { addBook, getBooks, getBook };
+

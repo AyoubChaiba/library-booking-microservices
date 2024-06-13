@@ -9,15 +9,16 @@ const generateToken = (id) => {
 };
 
 const register = async (userData) => {
-    const { username, password } = userData;
-    const user = new User({ username, password });
+    const { email, password, name } = userData;
+    const user = new User({ email, password, name });
     await user.save();
     return user;
 };
 
 const login = async (userData) => {
-    const { username, password } = userData;
-    const user = await User.findOne({ username });
+    const { email, password } = userData;
+
+    const user = await User.findOne({ email });
 
     if (!user || !(await user.matchPassword(password))) {
         throw new Error('Invalid credentials');
@@ -27,4 +28,17 @@ const login = async (userData) => {
     return { user, token };
 };
 
-module.exports = { register, login };
+
+const getUserById = async (id) => {
+    try {
+        const user = await User.findById(id);
+        if (!user) {
+            throw new Error('User not found');
+        }
+        return user;
+    } catch (error) {
+        throw new Error('Error fetching user');
+    }
+};
+
+module.exports = { register, login , getUserById };

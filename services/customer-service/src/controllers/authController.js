@@ -30,4 +30,13 @@ const verify = (req, res) => {
     res.json({ user: req.user });
 };
 
-module.exports = { register, login, verify };
+const getUserById = async (req, res) => {
+    try {
+        const user = await authService.getUserById(req.params.id);
+        res.status(200).json({ user });
+    } catch (error) {
+        res.status(404).json({ message: error.message });
+    }
+};
+
+module.exports = { register, login, verify, getUserById };
